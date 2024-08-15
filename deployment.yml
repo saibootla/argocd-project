@@ -30,7 +30,6 @@ spec:
     app: movies
   ports:
     - port: 80
-    nodePort: 31111
     targetPort: 80
 
 
