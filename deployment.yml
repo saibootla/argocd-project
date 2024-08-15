@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deploy
+  labels: 
+    app: movies
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: movies
+  template:
+    metadata: 
+      labels:
+        app: movies
+    spec:
+      containers:
+        - image: saibootla/paytmmoviesrepo:latest
+        name: cont1
+        ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: moviesservice
+spec:
+  type: LoadBalancer
+  selector:
+    app: movies
+  ports:
+    - port: 80
+    nodePort: 31111
+    targetPort: 80
+
+
+
+  
